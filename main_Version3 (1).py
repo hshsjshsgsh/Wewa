@@ -58,7 +58,7 @@ def get_tournament(guild_id, message_id=None):
     return tournaments[key]
 
 balances = {}
-DASH_GEM_EMOJI = "<: Dashgems:1462085260413243464>"
+DASH_GEM_EMOJI = "<:Dashgems:1462085260413243464>"
 GEMS_EMOJI = "<:Gems:1462455236487811308>"
 STAR_ICON = "<:starIcon:1462455325230895278>"
 SHOP_LOG_CHANNEL_ID = 1462794902814326887
@@ -186,15 +186,15 @@ class ShopView(discord.ui.View):
         view = ShopConfirmView(label, cost, gems_amount)
         await interaction.response.send_message(f"Are you sure you want to buy **{label}**? ", view=view, ephemeral=True)
 
-    @discord.ui.button(label="200 Gems", style=discord. ButtonStyle.blurple, emoji="<:Gems:1462455236487811308>")
+    @discord.ui.button(label="200", style=discord. ButtonStyle.blurple, emoji="<:Gems:1462455236487811308>")
     async def buy_200(self, interaction: discord.Interaction, button: discord.ui.Button):
         await self.handle_buy(interaction, 2500, 200, button.label)
 
-    @discord.ui.button(label="400 Gems", style=discord. ButtonStyle.blurple, emoji="<:Gems:1462455236487811308>")
+    @discord.ui.button(label="400", style=discord. ButtonStyle.blurple, emoji="<:Gems:1462455236487811308>")
     async def buy_400(self, interaction: discord.Interaction, button: discord.ui.Button):
         await self.handle_buy(interaction, 5000, 400, button.label)
 
-    @discord.ui.button(label="800 Gems", style=discord. ButtonStyle.blurple, emoji="<:Gems:1462455236487811308>")
+    @discord.ui.button(label="800", style=discord. ButtonStyle.blurple, emoji="<:Gems:1462455236487811308>")
     async def buy_800(self, interaction: discord.Interaction, button: discord.ui.Button):
         await self.handle_buy(interaction, 10000, 800, button.label)
 
@@ -238,7 +238,7 @@ def get_player_display_name(player, guild_id=None, bold=True):
                     emojis. append(bracket_roles[guild_str][role_str])
             
     if bold:
-        name_with_emojis = f"**{name}** {' '.join(emojis)}" if emojis else f"**{name}**"
+        name_with_emojis = f"{name} {' '.join(emojis)}" if emojis else f"**{name}**"
     else:
         name_with_emojis = f"{name} {' '.join(emojis)}" if emojis else f"{name}"
     return name_with_emojis
@@ -591,7 +591,7 @@ async def shop(ctx):
     user_id = str(ctx.author.id)
     balance = balances.get(user_id, 0)
     embed = discord.Embed(
-        title="### Stumble Zone || Gems Shop",
+        title="Stumble Zone || Gems Shop",
         description=(
             f"{ctx.author.mention}, welcome to our **Stumble Zone Shop**! Please click under this messages, what you would like to buy.  {STAR_ICON}\n\n"
             f"Your current balance is: **{balance}** {DASH_GEM_EMOJI}\n\n"
@@ -1148,3 +1148,16 @@ async def winner(ctx, member: discord.Member):
 
             embed.set_image(url="https://cdn.discordapp.com/attachments/1462029238528905219/1462109996480200765/Screenshot_20260117-174158-7852.png?ex=696cff8b&is=696bae0b&hm=6e4e4d8907016b5fc5652eb01ad3e33eb0624f10593d4730ef7e3c3ab34d4765")
             winners_view = WinnersView(ctx.guild.id)
+            tournament.message = await ctx.send(embed=embed, view=winners_view)
+
+    await ctx.send(f"{CHECK_EMOJI} {winner_name} wins their match!", delete_after=5)
+
+if __name__ == '__main__':
+    TOKEN = os.getenv('DISCORD_TOKEN')
+    if not TOKEN:
+        TOKEN = 'MTQ2MjAzMjI2ODYyODU5NDY4OA.GIi0iy.HnRFoqQ_P2kuMM08aApHksMcIP8n7Xjsgn0JIA'
+    try:
+        bot.run(TOKEN)
+    except Exception as e:
+        print(f"Error starting bot: {e}")
+        
