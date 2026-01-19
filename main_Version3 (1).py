@@ -1155,7 +1155,7 @@ async def winner(ctx, member: discord.Member):
 if __name__ == '__main__':
     TOKEN = os.getenv('DISCORD_TOKEN')
     if not TOKEN:
-        TOKEN = 'MTQ2MjAzMjI2ODYyODU5NDY4OA.GIi0iy.HnRFoqQ_P2kuMM08aApHksMcIP8n7Xjsgn0JIA'
+        TOKEN = 'MTA'
     try:
         bot.run(TOKEN)
     except Exception as e:
