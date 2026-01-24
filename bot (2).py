@@ -1295,7 +1295,7 @@ if __name__ == '__main__':
 
     if not TOKEN:
 
-        TOKEN = 'MTQ2MjAzMjI2ODYyODU5NDY4OA.GPekLe.KBIXJ2xmTCMdBz-TzxACXkd568eI'
+        TOKEN = 'MTQ2MjAzM8eI'
 
     try:
 
